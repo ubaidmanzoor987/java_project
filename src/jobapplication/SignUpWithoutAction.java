@@ -16,7 +16,7 @@ import java.sql.*;
 public class SignUpWithoutAction extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignUpWithoutAction
+     * Creates new form signup
      */
     public SignUpWithoutAction() {
         initComponents();
@@ -210,10 +210,81 @@ public class SignUpWithoutAction extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sign_up_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_up_buttonActionPerformed
-        
+        // TODO add your handling code here:
+        String us_name = user_name.getText();
+        String name = applicantname.getText();
+        String email = applicant_email.getText();
+        String contact_num = contact_no.getText();
+        String cnic = cnic_no.getText();
+        String address = applicant_address.getText();
+        String pass = password.getText();
+        String c_pass = confirm_password.getText();
+       
+        if (us_name.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "UserName Required", "Invalid Username", HEIGHT);
+             
+        }
+        else if (name.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Applicant Name Required", "Invalid Applicant Name", HEIGHT);
+        }
+        else if (email.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Email Required", "Invalid Email", HEIGHT);
+        }
+        else if (contact_num.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Contact Number Required", "Invalid Contact Number", HEIGHT);
+        }
+        else if (cnic.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "CNIC Required", "Invalid CNIC", HEIGHT);
+        }
+        else if (address.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Address Required", "Invalid Address", HEIGHT);
+        }
+        else if (pass.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Password Required", "Invalid Password", HEIGHT);
+        }else if (c_pass.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Confirm Password Required", "Invalid Confirm Password", HEIGHT);
+        }
+        else if (!c_pass.equals(pass)){
+            JOptionPane.showMessageDialog(null, "Password Not Match", "Invalid Confirm Password", HEIGHT);
+        }
+        else if (convert_string(contact_num) == false){
+            JOptionPane.showMessageDialog(null, "Contact Number must be of numbers","Invalid Contact Number",HEIGHT);
+        }
+        else if(contact_num.length() >11 || contact_num.length() <11){
+            JOptionPane.showMessageDialog(null, "Contact Number must be of 11 digit", "Invalid Contact Number", HEIGHT);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Successfully SIgnUp"); 
+              user_name.setText("");
+              applicantname.setText("");
+              applicant_email.setText("");
+              cnic_no.setText("");
+              contact_no.setText("");
+              applicant_address.setText("");
+              password.setText("");
+              confirm_password.setText("");
+          }
+               
+            
     }//GEN-LAST:event_sign_up_buttonActionPerformed
     
-   
+   public boolean convert_string(String cnum) {
+    try{
+        int cn = Integer.parseInt(cnum);
+    }catch(NumberFormatException ex){
+        System.out.println(ex);
+       return true;
+    }
+    return false;
+   }
     private void return_to_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_to_loginActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
